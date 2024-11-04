@@ -2,12 +2,20 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
+<<<<<<< HEAD
 name: 'Basket'
+=======
+name: 'my_new_project'
+>>>>>>> a2894765eda4b7a7d9e87d2cf208da2bb9e2d0db
 version: '1.0.0'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
+<<<<<<< HEAD
 profile: 'Basket'
+=======
+profile: 'default'
+>>>>>>> a2894765eda4b7a7d9e87d2cf208da2bb9e2d0db
 
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for example, states that models in this project can be
@@ -36,7 +44,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
+<<<<<<< HEAD
   Basket:
+=======
+  my_new_project:
+>>>>>>> a2894765eda4b7a7d9e87d2cf208da2bb9e2d0db
     # Applies to all files under models/example/
     example:
       +materialized: table
