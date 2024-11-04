@@ -41,7 +41,7 @@ with
             , id_global_carrinho
             , adicional_informacao_entrega_carrinho
             , adicional_servico_carrinho
-            , base_calculo_custo_entrega
+            --, base_calculo_custo_entrega
             , valor_bruto_carrinho
         from {{ ref('stg_carts')}}
     )

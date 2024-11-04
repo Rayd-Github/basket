@@ -36,10 +36,10 @@ with carts as (
     cast(p_previousdeliverymode as float64) as historico_modo_entrega_carrinho,
     cast(p_site as float64) as id_site_carrinho ,
     cast(p_store as float64) as id_loja_carrinho,
-    cast(p_guid as float64) as id_global_carrinho,
+    cast(p_guid as string) as id_global_carrinho,
     cast(p_deliveryinfo as float64) as adicional_informacao_entrega_carrinho,
     cast(p_subtotalservice as float64) as adicional_servico_carrinho,
-    cast(p_zipcodecalculatedelivery as float64) as base_calculo_custo_entrega,
+    --cast(p_zipcodecalculatedelivery as float64) as base_calculo_custo_entrega,
     cast(p_subtotalwithoutdiscounts as float64) as valor_bruto_carrinho
     from {{ source ("basket", "tb_carts") }}
     )
