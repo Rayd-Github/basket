@@ -1,0 +1,174 @@
+version: 2
+
+sources:
+  - name: basket
+    description: dataset de carrinhos de compras da Cantu
+    schema: cantu_raw
+
+    tables:
+      - name: tb_addresses
+        description: sistema de gerenciamento de endereços, possivelmente para um e-commerce ou sistema de entrega.  Armazenar informações de endereços, possivelmente associada a usuários ou pedidos em um sistema de e-commerce. Esses dados podem ser essenciais para o processamento de pedidos, entrega de produtos e comunicação com os clientes.
+        columns:
+          - name: createdTS; Timestamp que indica quando o endereço foi criado no sistema. Pode ser usado para rastrear a data de entrada do registro.
+          - name: modifiedTS; Timestamp que mostra a última vez que o endereço foi modificado. Isso ajuda a acompanhar alterações feitas no registro.
+          - name: PK; A chave primária da tabela, que serve como um identificador único para cada endereço.
+          - name: p_country; O país onde o endereço está localizado. 
+          - name: p_district, O distrito ou região administrativa dentro do município. 
+          - name: p_postalcode; O código postal (CEP no Brasil), que identifica uma área específica para correspondência e entrega.
+          - name: p_region; A região do país, que pode referir-se a uma subdivisão maior, como uma região metropolitana ou um estado.
+          - name: p_town; O nome da cidade onde o endereço está localizado.
+          - name: p_ibgecode; O código do IBGE (Instituto Brasileiro de Geografia e Estatística) que identifica o município.
+          - name: p_reference;  Um campo que pode conter informações adicionais sobre o endereço, como pontos de referência 
+
+      - name: tb_cartentries
+        description: sistema de gerenciamento de carrinho de compras ou de pedidos, sendo usada para rastrear os itens que os usuários adicionam a seus carrinhos de compras em um sistema de e-commerce. Os dados poderiam ser usados para análise de vendas, gestão de estoque, monitoramento de promoções e muito mais.
+        columns:
+          - name: hjmpTS; Poderia se referir a um timestamp de uma ação específica, talvez relacionado a quando um item foi adicionado ao carrinho.
+          - name: createdTS; Timestamp que indica quando a entrada foi criada no sistema.
+          - name: modifiedTS; Timestamp que mostra quando a entrada foi modificada pela última vez.
+          - name: TypePkString;  Pode indicar o tipo de produto ou item no carrinho.
+          - name: OwnerPkString; Poderia representar o identificador do proprietário do carrinho ou do usuário que está realizando a compra.
+          - name: PK; Refere à chave primária da tabela, um identificador único para cada entrada.
+          - name: sealed; Pode indicar se o pedido ou item foi "selado" ou finalizado, sugerindo que não pode ser alterado.
+          - name: p_baseprice; O preço base do produto.
+          - name: p_calculated; Pode ser o preço calculado após aplicar descontos ou outras regras.
+          - name: p_entrynumber; Um número que pode representar a posição ou o identificador da entrada no carrinho.
+          - name: p_product;  O identificador ou nome do produto.
+          - name: p_quantity; A quantidade do produto no carrinho.
+          - name: p_totalprice; O preço total da entrada (geralmente, preço base multiplicado pela quantidade).
+          - name: p_unit; A unidade de medida do produto (por exemplo, unidade, quilo, litro).
+          - name: p_giveaway; Pode indicar se o produto é um brinde ou parte de uma promoção.
+          - name: p_rejected;  Pode indicar se a entrada foi rejeitada por algum motivo (como falta de estoque).
+          - name: p_entrygroupnumbers; Poderia se referir a grupos de entradas, talvez para organização ou categorização.
+          - name: p_order; O identificador do pedido ao qual esta entrada pertence.
+
+
+      - name: tb_carts
+        description: sistema de gerenciamento de carrinhos de compras ou pedidos em um contexto de e-commerce.
+        columns:
+          - name: hjmpTS; Timestamp que pode registrar um evento específico, como quando o carrinho foi visualizado ou atualizado.
+          - name: createdTS; Timestamp que indica quando o carrinho foi criado no sistema. Pode ser usado para rastrear a data de entrada do registro.
+          - name: modifiedTS; Timestamp que mostra a última vez que o carrinho foi modificado. Isso ajuda a acompanhar alterações feitas no carrinho.
+          - name:  TypePkString; Campo que pode indicar o tipo de carrinho ou sua categoria, como carrinho de compras ou carrinho de reservas.
+          - name: OwnerPkString; Identificador do proprietário do carrinho, representando o usuário que está realizando a compra.
+          - name: PK; A chave primária da tabela, que serve como um identificador único para cada carrinho.
+          - name: sealed; Indicador que mostra se o carrinho foi finalizado ou se ainda pode ser modificado.
+          - name: p_calculated; O valor total calculado do carrinho após aplicar descontos, taxas, etc.
+          - name: p_code; Um código que pode identificar o carrinho ou a transação de forma única.
+          - name: p_currency; A moeda em que os preços são expressos (por exemplo, "BRL" para reais brasileiros).
+          - name: p_deliveryaddress; O endereço de entrega associado ao carrinho. Utilizado para enviar produtos ao cliente.
+          - name: p_deliverycost; O custo da entrega associado a esse carrinho. Pode variar conforme a distância ou método de entrega.
+          - name: p_deliverymode; O modo de entrega escolhido, como entrega padrão, expressa ou retirada em loja.
+          - name: p_deliverystatus; O status atual da entrega, indicando se está em trânsito, entregue ou pendente.
+          - name: p_description; Uma descrição do carrinho ou dos itens contidos nele, podendo incluir informações adicionais.
+          - name: p_expirationtime; O tempo ou data de expiração do carrinho, indicando até quando ele é válido para finalização.
+          - name: p_name; O nome atribuído ao carrinho ou ao pedido, que pode ajudar na identificação durante o processo de compra.
+          - name: p_net; O valor total líquido do carrinho, possivelmente antes de impostos e custos adicionais.
+          - name: p_paymentaddress; O endereço de pagamento associado ao carrinho, que pode ser diferente do endereço de entrega.
+          - name: p_paymentcost; O custo associado ao método de pagamento utilizado, como taxas de processamento.
+          - name: p_paymentinfo; Informações relacionadas ao pagamento, como tipo de cartão ou provedor de pagamento.
+          - name: p_paymentmode; O modo de pagamento escolhido, como cartão de crédito, PayPal ou boleto.
+          - name: p_paymentstatus; O status do pagamento, que pode ser "aprovado", "pendente" ou "rejeitado".
+          - name: p_status; O status geral do carrinho, podendo ser "ativo", "finalizado" ou "abandonado".
+          - name: p_exportstatus; Indica se o carrinho foi exportado para outro sistema ou não, ajudando a gerenciar integrações.
+          - name: p_statusinfo; Informações adicionais sobre o status do carrinho, que podem ajudar em suporte e rastreamento.
+          - name: p_totalprice; O preço total do carrinho, incluindo todos os itens, taxas e custos.
+          - name: p_totaldiscounts; O valor total dos descontos aplicados ao carrinho, permitindo análise de promoções.
+          - name: p_totaltax; O valor total dos impostos aplicados ao carrinho, fundamental para a contabilidade.
+          - name: p_user; O identificador do usuário associado a esse carrinho, facilitando a vinculação com perfis de cliente.
+          - name: p_subtotal; O subtotal do carrinho, que é a soma dos preços dos itens antes de impostos e descontos.
+          - name: p_discountsincludedeliverycost; Indica se os descontos aplicados incluem o custo de entrega.
+          - name: p_discountsincludepaymentcost; Indica se os descontos aplicados incluem o custo do pagamento.
+          - name: p_previousdeliverymode; O modo de entrega anteriormente selecionado antes de qualquer alteração, útil para histórico.
+          - name: p_site; O site ou plataforma onde o carrinho foi criado, relevante para empresas com múltiplas lojas online.
+          - name: p_store; A loja específica associada ao carrinho, se houver múltiplas lojas em um sistema.
+          - name: p_guid; Um identificador global único para o carrinho, que pode ser utilizado em integrações ou APIs.
+          - name: p_deliveryinfo; Informações adicionais sobre a entrega, como instruções especiais que o cliente deseja.
+          - name: p_subtotalservice; O subtotal relacionado a serviços adicionais que podem ter sido incluídos no carrinho.
+          - name: p_zipcodecalculatedelivery; O código postal utilizado para calcular os custos de entrega.
+          - name: p_subtotalwithoutdiscounts; O subtotal do carrinho antes da aplicação de qualquer desconto, fundamental para a análise de vendas.
+
+      - name: tb_cmssitelp
+        description: catalogo de lojas que revedem os pnesu da Cantu
+        columns:
+          - name: id_loja; Identificador único da loja. Este campo serve como a chave primária da tabela e é usado para diferenciar cada loja.
+          - name: nome_loja; Nome da loja, que pode incluir a marca ou o nome comercial. 
+
+      - name: tb_paymentinfos
+        description: Armazena informações relacionadas a pagamentos em um sistema, como detalhes de transações financeiras.
+        columns:
+          - name: createdTS, Data e hora em que o registro de pagamento foi criado.
+          - name: modifiedTS, Data e hora da última modificação do registro de pagamento.
+          - name: PK, Identificador único para cada registro na tabela.
+          - name: p_installments, Número de parcelas em que o pagamento é dividido.
+
+      - name: tb_paymentmodes
+        description:  armazena informações sobre os diferentes métodos de pagamento disponíveis no sistema. Essa tabela é essencial para gerenciar como os clientes podem realizar suas transações, incluindo detalhes sobre a validade, o status e as características de cada método.
+        columns:
+          - name: hjmpTS; Timestamp que registra eventos específicos relacionados ao modo de pagamento, como adições ou modificações.
+          - name: createdTS;  Indica quando o registro do modo de pagamento foi criado, útil para auditoria.
+          - name: modifiedTS; Mostra a última modificação no registro, ajudando a rastrear alterações.
+          - name: TypePkString; Categoria ou tipo do modo de pagamento, como crédito ou débito.
+          - name: OwnerPkString; Identificador do proprietário ou responsável pelo registro.
+          - name: PK; Chave primária, garantindo que cada registro seja único.
+          - name: sealed; Indica se o modo de pagamento é finalizado e não pode ser alterado.
+          - name: p_active; Sinaliza se o modo de pagamento está ativo ou inativo.
+          - name: p_code; Código único que identifica o modo de pagamento.
+          - name: p_paymentinfotype; Tipo de informação de pagamento associada, como pagamentos à vista ou parcelados.
+          - name: aCLTS; Timestamp relacionado ao controle de acesso, indicando quando as permissões foram modificadas.
+          - name: propTS; Timestamp que registra a última atualização das propriedades do modo de pagamento.
+          - name: p_net; Valor líquido associado ao modo de pagamento.
+          - name: p_sapcode; Código para integrações com sistemas SAP
+          - name: p_b2bactive; Indica se o modo de pagamento está disponível para transações B2B.
+          - name: p_showinstallments; Define se opções de parcelamento devem ser exibidas ao usuário.
+
+
+      - name: tb_regions
+        description: Armazena informações sobre diferentes regiões geográficas.é fundamental para categorizar e organizar dados geográficos em um sistema, permitindo análises e relatórios baseados em localização.
+        columns:
+          - name: hjmpTS, Registra eventos específicos relacionados à região.
+          - name: createdTS, Indica quando o registro da região foi criado.
+          - name: modifiedTS, Mostra a última modificação no registro da região.
+          - name: TypePkString, Identifica o tipo de chave primária ou categoria associada à região.
+          - name: OwnerPkString, Identificador do proprietário ou administrador da região.
+          - name: PK, Chave primária, garantindo a unicidade de cada registro.
+          - name: sealed; Indica se o registro da região pode ser alterado ou não.
+          - name: p_active; Sinaliza se a região está ativa ou inativa.
+          - name: p_isocode; Código ISO que representa a região.
+          - name: p_country; Nome do país ao qual a região pertence.
+          - name: p_isocodeshort; Abreviação do código ISO da região.
+          - name: aCLTS; Timestamp relacionado ao controle de acesso da região.
+          - name: propTS; Timestamp que registra a última atualização das propriedades da região.
+
+
+      - name: tb_users
+        description: Armazena informações sobre os usuários do sistema, incluindo detalhes de identificação, preferências, informações de contato e status da conta.
+        columns:
+          - name: hjmpTS; Timestamp que registra eventos específicos relacionados ao usuário, como alterações em suas informações ou atividades no sistema.
+          - name: createdTS;  Indica quando o registro do usuário foi criado no sistema.
+          - name: modifiedTS; Timestamp que mostra a última vez que o registro do usuário foi alterado, ajudando a manter um histórico de modificações.
+          - name: TypePkString;  Identifica o tipo de chave primária ou categoria associada ao usuário, permitindo uma melhor categorização.
+          - name: OwnerPkString; Identificador do proprietário ou administrador do registro do usuário, possivelmente referindo-se ao responsável pela criação ou gerenciamento da conta.
+          - name: PK; A chave primária da tabela, que serve como identificador único para cada registro de usuário, garantindo que não haja duplicidade.
+            tests:
+                - unique
+                - not_null
+          - name: p_uid; Identificador único do usuário no sistema, essencial para referenciar e gerenciar contas de maneira eficaz.
+          - name: p_sessionlanguage; Idioma preferido pelo usuário para a sessão, permitindo uma experiência personalizada e amigável.
+          - name: p_sessioncurrency; Moeda preferida para transações, facilitando compras e interações financeiras.
+          - name: p_logindisabled; Indicador que sinaliza se o login do usuário está desativado, importante para segurança e controle de acesso.
+          - name: p_lastlogin; Timestamp que registra a última vez que o usuário fez login no sistema, útil para monitorar a atividade do usuário.
+          - name: p_originaluid; Identificador do usuário original, podendo ser usado para rastrear migrações ou fusões de contas.
+          - name: p_type; Tipo de usuário, que pode referir-se a categorias como cliente, administrador, etc., ajudando na segmentação.
+          - name: p_emailpreference; Preferências de comunicação por e-mail do usuário, como receber newsletters ou promoções.
+          - name: p_smspreference; Preferências de comunicação via SMS, indicando se o usuário deseja receber mensagens de texto.
+          - name: p_basestore; Identificador da loja base associada ao usuário, útil para personalizar a experiência de compra.
+          - name: p_dddphone; Código DDD do telefone fixo do usuário, facilitando o contato direto.
+          - name: p_dddcellphone; Código DDD do celular do usuário, importante para comunicações via SMS ou chamadas.
+          - name: p_dddcellphoneaditional; Código DDD de um telefone celular adicional, caso o usuário forneça mais de um número.
+          - name: p_birthday; Data de nascimento do usuário, que pode ser usada para marketing personalizado ou ofertas especiais.
+          - name: p_subscribenewsletter; Indicador que sinaliza se o usuário está inscrito para receber newsletters.
+          - name: p_registerdatetime; Timestamp que indica quando o usuário se registrou no sistema, útil para rastrear o tempo de conta.
+          - name: p_sapconsumerid; Identificador do consumidor no sistema SAP, facilitando a integração com sistemas empresariais.
+          - name: p_sapcontactid; Identificador de contato no sistema SAP, utilizado para gerenciar informações de contato em sistemas integrados.
+          - name: p_sapisreplicated; Indicador que mostra se as informações do usuário foram replicadas no sistema SAP, essencial para a sincronização de dados.
