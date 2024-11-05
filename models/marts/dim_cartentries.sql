@@ -3,9 +3,9 @@ with
         select 
             {{ dbt_utils.generate_surrogate_key (['id_pedido_produto']) }} as pk_pedido
             , TS_produto_visualizado
-            , TS_produto_adicionado
-            , TS_produto_modificado
-            , tipo_produto
+           -- , TS_produto_adicionado
+           -- , TS_produto_modificado
+            , id_tipo_produto
             , proprietario_item
             , id_entrada_produto
             , produto_selado

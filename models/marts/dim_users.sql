@@ -7,7 +7,7 @@ with
             , TS_usuario_modificado
             , categoria_usuario
             , adminitrador_usuario
-            ,  ui_usuario
+            , ui_usuario
             , idioma_usuario
             , moeda_usuario
             , ativo_inativo_usuario

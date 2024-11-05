@@ -10,6 +10,8 @@ with
             , cep_endereco
             , regiao_endereco
             , cidade_endereco
+            , codigoIBGE_endereco
+            , referencia_endereco
         from {{ ref('stg_addresses') }}
     )
 select *
