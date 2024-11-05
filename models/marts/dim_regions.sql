@@ -1,6 +1,6 @@
 
 with
-    dim_region as (
+    dim_regions as (
         select 
             {{ dbt_utils.generate_surrogate_key (['id_regiao']) }} as pk_regiao
             , TS_regiao
@@ -18,4 +18,4 @@ with
         from {{ ref('stg_regions') }}
     )
 select *
-from dim_region
+from dim_regions
